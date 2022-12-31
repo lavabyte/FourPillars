@@ -1,5 +1,6 @@
-
-// 十神
+import { TianGanName, ElementRelation } from './basicTypes';
+import { TianGan } from './tianGan';
+import { DiZhi } from './diZhi';
 
 type God = {
   fullName: string;
@@ -64,9 +65,9 @@ function elementOrder(gan: TianGan) {
   }
 }
 
-function elementRelation(otherGan: TianGan, selfGan: TianGan): ElementRelation {
+function elementRelation(otherGan: TianGan, riZhu: TianGan): ElementRelation {
   let orderOther = elementOrder(otherGan);
-  let orderSelf = elementOrder(selfGan);
+  let orderSelf = elementOrder(riZhu);
   let diff = orderOther - orderSelf;
   if (orderSelf < orderOther) {
     switch (diff) {
@@ -95,9 +96,9 @@ function elementRelation(otherGan: TianGan, selfGan: TianGan): ElementRelation {
   }
 }
 
-function godRelation(otherGan: TianGan, selfGan: TianGan): God {
-  let eleRelation = elementRelation(otherGan, selfGan);
-  if (otherGan.gender == selfGan.gender) {
+function godRelation(otherGan: TianGan, riZhu: TianGan): God {
+  let eleRelation = elementRelation(otherGan, riZhu);
+  if (otherGan.gender == riZhu.gender) {
     switch (eleRelation) {
       case '同我':
         return biJian;
@@ -126,26 +127,4 @@ function godRelation(otherGan: TianGan, selfGan: TianGan): God {
   }
 }
 
-
-
-class TenGods {
-  god: God;
-  gan: TianGan;
-  taiChi: TianGan;
-
-  constructor(nameOfGan: TianGanName, nameOfTaiChi: TianGanName) {
-    this.gan = standardTianGan(nameOfGan);
-    this.taiChi = standardTianGan(nameOfTaiChi);
-    this.god = godRelation(this.taiChi, this.gan);
-  }
-
-  godFullName() {
-    return this.god.fullName;
-  }
-
-  godShortName() {
-    return this.god.shortName;
-  }
-}
-
-export { TenGods, yinMu };
+export { godRelation };
