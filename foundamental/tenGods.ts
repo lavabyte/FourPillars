@@ -1,17 +1,3 @@
-type Gender = '阴' | '阳';
-type FiveElement = '金' | '木' | '水' | '火' | '土';
-type TianGanName =
-  | '甲'
-  | '乙'
-  | '丙'
-  | '丁'
-  | '戊'
-  | '己'
-  | '庚'
-  | '辛'
-  | '壬'
-  | '癸';
-type ElementRelation = '生我' | '克我' | '同我' | '我生' | '我克';
 
 // 十神
 
@@ -20,27 +6,27 @@ type God = {
   shortName: string;
 };
 
-const bi: God = {
+const biJian: God = {
   fullName: '比肩',
   shortName: '比',
 };
 
-const jie: God = {
+const jieCai: God = {
   fullName: '劫财',
   shortName: '劫',
 };
 
-const shi: God = {
+const shiShen: God = {
   fullName: '食神',
   shortName: '食',
 };
 
-const shang: God = {
+const shangGuan: God = {
   fullName: '伤官',
   shortName: '伤',
 };
 
-const cai: God = {
+const zhengCai: God = {
   fullName: '正财',
   shortName: '财',
 };
@@ -50,103 +36,24 @@ const pianCai: God = {
   shortName: '才',
 };
 
-const yin: God = {
+const zhengYin: God = {
   fullName: '正印',
   shortName: '印',
 };
 
-const xiao: God = {
+const xiaoYin: God = {
   fullName: '枭印',
   shortName: '枭',
 };
 
-const sha: God = {
+const qiSha: God = {
   fullName: '七杀',
   shortName: '杀',
 };
 
-// 天干
-
-const guan: God = {
+const zhengGuan: God = {
   fullName: '正官',
   shortName: '官',
-};
-
-type TianGan = {
-  element: FiveElement;
-  gender: Gender;
-  name: TianGanName;
-  order: number;
-};
-
-const jia: TianGan = {
-  element: '木',
-  gender: '阳',
-  name: '甲',
-  order: 0,
-};
-
-const yi: TianGan = {
-  element: '木',
-  gender: '阴',
-  name: '乙',
-  order: 1,
-};
-
-const bing: TianGan = {
-  element: '火',
-  gender: '阳',
-  name: '丙',
-  order: 2,
-};
-
-const ding: TianGan = {
-  element: '火',
-  gender: '阴',
-  name: '丁',
-  order: 3,
-};
-
-const wu: TianGan = {
-  element: '土',
-  gender: '阳',
-  name: '戊',
-  order: 4,
-};
-
-const ji: TianGan = {
-  element: '土',
-  gender: '阴',
-  name: '己',
-  order: 5,
-};
-
-const geng: TianGan = {
-  element: '金',
-  gender: '阳',
-  name: '庚',
-  order: 6,
-};
-
-const xin: TianGan = {
-  element: '金',
-  gender: '阴',
-  name: '辛',
-  order: 7,
-};
-
-const ren: TianGan = {
-  element: '水',
-  gender: '阳',
-  name: '壬',
-  order: 8,
-};
-
-const gui: TianGan = {
-  element: '水',
-  gender: '阴',
-  name: '癸',
-  order: 9,
 };
 
 function elementOrder(gan: TianGan) {
@@ -193,56 +100,33 @@ function godRelation(otherGan: TianGan, selfGan: TianGan): God {
   if (otherGan.gender == selfGan.gender) {
     switch (eleRelation) {
       case '同我':
-        return bi;
+        return biJian;
       case '我生':
-        return shi;
+        return shiShen;
       case '我克':
         return pianCai;
       case '克我':
-        return sha;
+        return qiSha;
       case '生我':
-        return xiao;
+        return xiaoYin;
     }
   } else {
     switch (eleRelation) {
       case '同我':
-        return jie;
+        return jieCai;
       case '我生':
-        return shang;
+        return shangGuan;
       case '我克':
-        return cai;
+        return zhengCai;
       case '克我':
-        return guan;
+        return zhengGuan;
       case '生我':
-        return yin;
+        return zhengYin;
     }
   }
 }
 
-function standardTianGan(gan: TianGanName): TianGan {
-  switch (gan) {
-    case '甲':
-      return jia;
-    case '乙':
-      return yi;
-    case '丙':
-      return bing;
-    case '丁':
-      return ding;
-    case '戊':
-      return wu;
-    case '己':
-      return ji;
-    case '庚':
-      return geng;
-    case '辛':
-      return xin;
-    case '壬':
-      return ren;
-    case '癸':
-      return gui;
-  }
-}
+
 
 class TenGods {
   god: God;
@@ -264,4 +148,4 @@ class TenGods {
   }
 }
 
-export { TenGods };
+export { TenGods, yinMu };
