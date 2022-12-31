@@ -12,15 +12,14 @@ let s: input = {
   sex: 'male',
 };
 
-let ganChar = s.fourPillars
+let ganChars = s.fourPillars
   .split(' ')
   .map((item) => item[0])
   .map(mapToTianGan);
   
-let zhiChar = s.fourPillars
+let zhiChars = s.fourPillars
   .split(' ')
   .map((item) => item[1])
   .map(mapToDiZhi);
 
-console.log(ganChar);
-console.log('asdf');
+
